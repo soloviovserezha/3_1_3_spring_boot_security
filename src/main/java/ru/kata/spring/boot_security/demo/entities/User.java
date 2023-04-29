@@ -33,9 +33,6 @@ public class User implements UserDetails {
                     name = "roles_id", referencedColumnName = "id"))
     private Collection<Role> roles;
 
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private Collection<Role> roles;
-
     public User() {
     }
 
