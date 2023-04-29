@@ -19,7 +19,7 @@
 <body>
 <div id="user_edit" class="container mt-5 mb-5">
     <h1>Edit</h1>
-    <form th:method="patch" th:each="el : ${user}"  th:object="${user}">
+    <form th:method="patch" th:action="@{'/admin/users/' + ${user.id} + '/edit'}" th:each="el : ${user}"  th:object="${user}">
         <label>
             <input type="text" th:value="${user.username}" placeholder="user name" class="form-control"
                    th:field="*{username}">
