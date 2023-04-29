@@ -28,7 +28,7 @@ public class SpringBootSecurityDemoApplication implements ApplicationRunner {
 		user.setUsername("user");
 		user.setEmail("user@gmail.com");
 		user.setPassword("user");
-		
+
 		User admin = new User();
 
 		admin.setUsername("admin");
