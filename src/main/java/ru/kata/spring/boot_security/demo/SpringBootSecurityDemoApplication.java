@@ -4,6 +4,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.entities.User;
 import ru.kata.spring.boot_security.demo.services.UserService;
 
@@ -22,6 +23,7 @@ public class SpringBootSecurityDemoApplication implements ApplicationRunner {
 	}
 
 	@Override
+	@Transactional
 	public void run(ApplicationArguments args) throws Exception {
 		User user = new User();
 

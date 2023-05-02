@@ -29,8 +29,12 @@
                    th:field="*{email}">
         </label> <br>
         <label>
-            <input type="password" th:value="${user.password}" placeholder="user surname" class="form-control"
+            <input type="password" th:value="${user.password}" placeholder="password" class="form-control"
                    th:field="*{password}">
+        </label> <br>
+        <label>
+            <input type="text" th:text="'ROLES: ' + ${user.roles}" placeholder="roles" class="form-control"
+                   th:field="*{roles}">
         </label> <br>
         <button type="submit" class="btn btn-success">Edit</button>
     </form>

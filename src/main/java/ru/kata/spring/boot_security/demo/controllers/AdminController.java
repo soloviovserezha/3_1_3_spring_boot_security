@@ -34,7 +34,7 @@ public class AdminController {
     public String saveUser(Model model) {
         model.addAttribute("userForm", new User());
         userService.getUserList();
-        return "user-add";
+        return "add-new-user";
     }
 
     @PostMapping("/users/add")
@@ -46,7 +46,7 @@ public class AdminController {
     @GetMapping("/users/{id}/edit")
     public String editUser(@PathVariable(value = "id") Long id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
-        return "user-edit";
+        return "edit-user";
     }
 
     @PatchMapping(value = "/users/{id}/edit")

@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     private UserRepository userRepository;
 
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public void setPasswordEncoder(@Lazy PasswordEncoder passwordEncoder) {
@@ -83,30 +83,28 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setUsername(user.getUsername());
         user.setEmail(user.getEmail());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(user.getRoles());
         return userRepository.save(user);
     }
 
     @Override
     @Transactional
     public boolean saveUser(User user) {
-
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
         if (user.getUsername().equals("admin")) {
             user.setRoles(getRoleForAdmin(user));
         } else {
             user.setRoles(Collections.singleton(new Role(user.getId(), "ROLE_USER")));
         }
-
         userRepository.save(user);
         return true;
     }
 
-    private Collection<Role> getRoleForAdmin(User user) {
-        List<Role> roleList = new ArrayList<>();
-        roleList.add(new Role(user.getId(), "ROLE_USER"));
-        roleList.add(new Role(user.getId(), "ROLE_ADMIN"));
-        return roleList;
+    private Set<Role> getRoleForAdmin(User user) {
+        Set<Role> adminSetRoles = new HashSet<>();
+        adminSetRoles.add(new Role(user.getId(), "ROLE_USER"));
+        adminSetRoles.add(new Role(user.getId(), "ROLE_ADMIN"));
+        return adminSetRoles;
 
     }
 }
